@@ -1,0 +1,88 @@
+// procedure dotproduct
+PROCEDURE dot_product(v1,v2)
+VAR
+    v1 : ARRAY_OF INTEGER[3];
+    v2 : ARRAY_OF INTEGER[3];
+    ps : INTEGER:=0;
+BEGIN
+    FOR i FROM 0 TO v1.length-1 STEP 1 DO
+        ps:=ps+(v1[i]*v2[i]);
+    END_FOR
+END
+// function dotproduct
+FUNCTION dot_product(v1,v2) : INTEGER
+VAR
+    v1 : ARRAY_OF INTEGER[3];
+    v2 : ARRAY_OF INTEGER[3];
+    ps : INTEGER:=0;
+BEGIN
+    FOR i FROM 0 TO v1.length-1 STEP 1 DO
+        ps:=ps+(v1[i]*v2[i]);
+    END_FOR
+    RETURN ps ;
+END
+// algorithm with procedure
+ALGORITHM isorthogonal
+VAR
+    M1 : ARRAY_OF INTEGER[50][3];
+    M2 : ARRAY_OF INTEGER[50][3];
+    l:INTEGER;
+    n : INTEGER;
+    o_1,o_2 : ARRAY_OF integer[3];
+BEGIN
+    FOR i FROM 0 TO l-1 STEP 1  DO
+        FOR j FROM 0 TO 2 STEP 1  DO
+            Read(M1[i][j];)
+        END_FOR
+    END_FOR
+    FOR i FROM 0 TO l-1 STEP 1  DO
+        FOR j FROM 0 TO 2 STEP 1  DO
+            Read(M2[i][j];)
+        END_FOR
+    END_FOR
+    read(n);
+    FOR j FROM 0 TO 2 STEP 1  DO
+        o_1:=M1[n][j];
+    END_FOR
+    FOR j FROM 0 TO 2 STEP 1  DO
+        o_2:=M2[n][j];
+    END_FOR
+    IF (dot_product(o_1,o_2)=0) THEN
+        Write("the vectors are orthogonal");
+    END_IF
+END
+// algorithm with function
+ALGORITHM isorthogonal
+VAR
+    M1 : ARRAY_OF INTEGER[50][3];
+    M2 : ARRAY_OF INTEGER[50][3];
+    result : INTEGER;
+    l:INTEGER;
+    n : INTEGER;
+    o_1,o_2 : ARRAY_OF integer[3];
+BEGIN
+    Write("input values of the first matrix")
+    FOR i FROM 0 TO l-1 STEP 1  DO
+        FOR j FROM 0 TO 2 STEP 1  DO
+            Read(M1[i][j];)
+        END_FOR
+    END_FOR
+    Write("input values of the second matrix")
+    FOR i FROM 0 TO l-1 STEP 1  DO
+        FOR j FROM 0 TO 2 STEP 1  DO
+            Read(M2[i][j];)
+        END_FOR
+    END_FOR
+    Write("input vector pair index")
+    read(n);
+    FOR j FROM 0 TO 2 STEP 1  DO
+        o_1:=M1[n][j];
+    END_FOR
+    FOR j FROM 0 TO 2 STEP 1  DO
+        o_2:=M2[n][j];
+    END_FOR
+    result:=dot_product(o_1,o_2)
+    IF (result=0) THEN
+        Write("the vectors are orthogonal");
+    END_IF
+END
