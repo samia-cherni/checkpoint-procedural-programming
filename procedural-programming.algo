@@ -1,11 +1,10 @@
 // procedure dotproduct
-PROCEDURE dot_product(v1,v2)
+PROCEDURE dot_product(v1,v2 : ARRAY_OF FLOAT[50];)
 VAR
-    v1 : ARRAY_OF INTEGER[50];
-    v2 : ARRAY_OF INTEGER[50];
-    ps : INTEGER:=0;
+    ps : FLOAT:=0;
     i : INTEGER;
 BEGIN
+    IF (v1.length=v2.length)
     FOR i FROM 0 TO v1.length-1 STEP 1 DO
         ps:=ps+(v1[i]*v2[i]);
     END_FOR
@@ -14,23 +13,29 @@ BEGIN
         ELSE
             Write("the vectors are not orthogonal");
     END_IF
+    ELSE
+        Write("the vectors do not have the same length");
+    END_IF
 END
 // function dotproduct
-FUNCTION dot_product(v1,v2) : INTEGER
+FUNCTION dot_product(v1,v2 : ARRAY_OF FLOAT[50]) : FLOAT
 VAR
-    ps : INTEGER:=0;
+    ps : FLOAT:=0;
     i : INTEGER;
 BEGIN
+    IF (v1.length=v2.length)
     FOR i FROM 0 TO v1.length-1 STEP 1 DO
         ps:=ps+(v1[i]*v2[i]);
     END_FOR
+    ELSE
+        Write("the vectors do not have the same length");
+    END_IF
     RETURN ps;
 END
 // algorithm with procedure
 ALGORITHM isorthogonal
 VAR
-    o_1,o_2 : ARRAY_OF integer[50];
-    j:INTEGER;
+    o_1,o_2 : ARRAY_OF FLOAT[50];
 BEGIN
     Write("enter the first vector coordinates");
     Read(o_1);
@@ -41,8 +46,8 @@ END
 // algorithm with function
 ALGORITHM isorthogonal
 VAR
-    o_1,o_2 : ARRAY_OF integer[50];
-    result : INTEGER;
+    o_1,o_2 : ARRAY_OF FLOAT[50];
+    result : FLOAT;
 BEGIN
     write("input first vector coordinates");
     Read(o_1);
